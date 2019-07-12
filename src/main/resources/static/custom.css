@@ -1,0 +1,29 @@
+body, html {
+  height: 100%;
+}
+
+
+body {
+	background-image:url("/images/background.jpg");
+	  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header{
+	text-align:center;
+}
+
+.card{
+	background-color: grey;
+	margin:4px;
+}
+
+.addbutton{
+	text-align: center;
+    margin-top: 4px;
+}

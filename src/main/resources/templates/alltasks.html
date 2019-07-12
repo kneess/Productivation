@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<div th:replace="fragments/head"></div>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary header">
+		<a href="#" class="navbar-brand">Productivation</a>
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<form th:action="@{/task/new}" method="get">
+						<button class="btn btn-md btn-danger" type="submit">Add
+							Task</button>
+					</form>
+				</li>
+				<li class="nav-item">
+
+					<form th:action="@{/logout}" method="get">
+						<button class="btn btn-md btn-secondary" type="Submit"
+							value="Submit">Logout</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="header">
+			<h1>To-Do's</h1>
+		</div>
+		<div class="list-group">
+			<div th:each="task: ${tasks}">
+				<div class="card text-center">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${task.description}"></h5>
+						<div th:if="${task.complete == false}">
+						<form th:action="@{/task/} + ${task.id}" th:method="put">
+							<button class="btn btn-md btn-secondary" type="submit">Incomplete</button>
+						</form>
+						</div>
+						<div th:if="${task.complete == true}">
+						<form th:action="@{/task/} + ${task.id}" th:method="put">
+							<button class="btn btn-md btn-secondary" type="submit">Complete</button>
+						</form>
+						</div>
+						<form th:action="@{/task/} + ${task.id}" th:method="delete">
+							<button class="btn btn-md btn-danger" type="submit">Delete
+								Task</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/scripts"></div>
+</body>
+</html>
